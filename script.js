@@ -16,15 +16,6 @@ const STORAGE_KEY_LANG = "dev_arcade_lang_v4";
 // ============================================================================
 // ADMIN CREATOR KEY & DEFAULT ADMIN ACCOUNT
 // ============================================================================
-const CREATOR_SECRET_KEY = "admin123";
-
-const defaultAdminUser = {
-    username: "admin",
-    email: "admin@arcade.dev",
-    password: "admin123",
-    name: "Admin Creator",
-    role: "creator"
-};
 
 // ============================================================================
 // DEFAULT GAMES LIST (WITH DUAL GITHUB LINKS & SNAKE COVER POSITIONED ON THE SNAKE)
