@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Arcade | Web Games Portfolio & GitHub Code</title>
+    <meta name="description" content="Interactive web games portfolio built with HTML5, CSS and JavaScript. Play online demos or explore open-source code on GitHub.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient Neon Glowing Background -->
+    <div class="ambient-bg" aria-hidden="true">
+        <div class="ambient-blob-1"></div>
+        <div class="ambient-blob-2"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="brand">
+                <div class="brand-icon">🎮</div>
+                <div class="brand-name">
+                    <span class="brand-title">Dev Arcade</span>
+                    <span class="brand-subtitle" data-i18n="brandSubtitle">Game Portfolio</span>
+                </div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#giochi" class="nav-link" data-i18n="navGames">Games</a>
+                <a href="#faq" class="nav-link" data-i18n="navFaq">FAQ</a>
+                <a href="https://github.com/diensal8-sudo" target="_blank" rel="noopener" class="nav-link" data-i18n="navGithub">
+                    GitHub
+                </a>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- 10 Languages Selector (English Default) -->
+                <div class="lang-selector-wrapper" title="Select Language / Scegli Lingua">
+                    <span class="lang-icon">🌐</span>
+                    <select id="lang-select" class="lang-select" aria-label="Select language">
+                        <option value="en" selected>English</option>
+                        <option value="it">Italiano</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="ar">العربية</option>
+                        <option value="zh">简体中文</option>
+                        <option value="pt">Português</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ru">Русский</option>
+                        <option value="ja">日本語</option>
+                    </select>
+                </div>
+
+                <!-- Theme Toggle Button (Dark / Light) -->
+                <button id="theme-toggle-btn" class="btn-icon-circle" title="Toggle theme" aria-label="Toggle theme">
+                    <span id="theme-icon">☀️</span>
+                </button>
+
+                <!-- User Profile Menu (When Logged In) -->
+                <div id="user-profile-menu" class="hidden" style="display: flex; align-items: center; gap: 8px;">
+                    <div class="user-badge">
+                        <div class="user-avatar-circle" id="user-avatar-initial">U</div>
+                        <span id="user-display-name">User</span>
+                        <span class="user-role-tag" id="user-role-badge">Creator</span>
+                    </div>
+                    <button id="nav-add-game-btn" class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem;" data-i18n="navNewGame">
+                        + New Game
+                    </button>
+                    <button id="logout-btn" class="btn-danger-outline" title="Logout" data-i18n="navLogout">
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Auth Trigger (When Logged Out) -->
+                <div id="auth-actions">
+                    <button id="open-auth-btn" class="btn-primary" data-i18n="navAuth">
+                        🔐 Login / Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge-pill">
+                <span>🕹️</span> <span data-i18n="heroBadge">Web Game Portfolio & Open Source Code</span>
+            </div>
+            <h1>
+                <span data-i18n="heroTitle1">My games crafted from scratch,</span> <br>
+                <span class="hero-gradient-text" data-i18n="heroTitle2">playable online in your browser</span>
+            </h1>
+            <p class="hero-subtitle" data-i18n="heroSubtitle">
+                Explore my interactive game collection: test every game live in the browser via GitHub Pages or inspect the open-source codebase on GitHub.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#giochi" class="btn-primary" data-i18n="heroExplore">
+                    🎮 Explore Games
+                </a>
+                <button id="hero-add-btn" class="btn-outline" data-i18n="heroAdd">
+                    ➕ Add a Game
+                </button>
+                <button id="open-export-modal" class="btn-github" data-i18n="heroExport">
+                    📦 Export for GitHub
+                </button>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-icon">🕹️</div>
+                    <div>
+                        <div class="stat-num" id="stat-total-games">0</div>
+                        <div class="stat-label" data-i18n="statGames">Games in Portfolio</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🚀</div>
+                    <div>
+                        <div class="stat-num">100%</div>
+                        <div class="stat-label" data-i18n="statPlayable">Playable Online</div>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">💻</div>
+                    <div>
+                        <div class="stat-num">GitHub</div>
+                        <div class="stat-label" data-i18n="statCode">Source Code Ready</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Showcase Section -->
+    <main id="giochi" class="games-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-title-wrap">
+                    <h2 data-i18n="showcaseTitle">🎮 Games Showcase</h2>
+                    <p class="section-subtitle" data-i18n="showcaseSubtitle">
+                        Choose a game: click "▶ Play Online" to launch the demo or "&lt;/&gt; GitHub Code" to inspect the repository.
+                    </p>
+                </div>
+
+                <!-- Controls: Search, Sort and Category Filters -->
+                <div class="controls-bar">
+                    <div class="search-and-sort">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="search-input" placeholder="Search by title, technology or keyword..." aria-label="Search game" data-i18n-ph="searchPlaceholder">
+                        </div>
+                        <select id="sort-select" class="sort-select" aria-label="Sort games">
+                            <option value="newest" data-i18n="sortNewest">Newest first</option>
+                            <option value="alpha" data-i18n="sortAlpha">Title (A - Z)</option>
+                            <option value="category" data-i18n="sortCategory">Category</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-pills" id="category-filters">
+                        <button class="pill active" data-category="Tutti" data-i18n="catAll">All</button>
+                        <button class="pill" data-category="Arcade" data-i18n="catArcade">🕹️ Arcade</button>
+                        <button class="pill" data-category="Puzzle" data-i18n="catPuzzle">🧩 Puzzle</button>
+                        <button class="pill" data-category="Azione" data-i18n="catAction">⚔️ Action</button>
+                        <button class="pill" data-category="Platform" data-i18n="catPlatform">🏃 Platform</button>
+                        <button class="pill" data-category="Casual" data-i18n="catCasual">🎲 Casual</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Games Grid -->
+            <div id="games-grid" class="games-grid">
+                <!-- Dynamically populated by script.js -->
+            </div>
+        </div>
+    </main>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="faq-title-wrap">
+                <h2 data-i18n="faqTitle">❓ Frequently Asked Questions</h2>
+                <p data-i18n="faqSubtitle">Everything you need to know about this game portfolio</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faqQ1">How do the two GitHub links work for each game?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faqA1">
+                            Each game includes two essential links: 1. "▶ Play Online" launches the game hosted via GitHub Pages (e.g. https://username.github.io/game-name/). 2. "&lt;/&gt; GitHub Code" opens the GitHub Repository with all source files to study, fork, or star.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faqQ2">How can I add a new game to the portfolio?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faqA2">
+                            Click "Login / Register" at the top right. Log in as Creator with your credentials or register a new Creator account with your secret key. Then click "+ New Game" to publish your title and both GitHub links!
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faqQ3">Do added games stay saved permanently?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faqA3">
+                            Yes! Added games are saved directly in browser LocalStorage. Furthermore, with the "Export for GitHub" button, you can copy the updated list into script.js so every visitor sees your games preloaded.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faqQ4">Can I test games directly inside this website?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faqA4">
+                            Absolutely! Click "Play in Portfolio" on any card to launch an interactive game window without ever leaving the page.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="brand">
+                        <div class="brand-icon">🎮</div>
+                        <div class="brand-name">
+                            <span class="brand-title">Dev Arcade</span>
+                            <span class="brand-subtitle" data-i18n="brandSubtitle">Game Portfolio</span>
+                        </div>
+                    </div>
+                    <p class="footer-desc" data-i18n="footerDesc">
+                        A collection of web games, prototypes and open-source experiments built with modern web technologies (HTML5 Canvas, CSS3, Vanilla JavaScript).
+                    </p>
+                </div>
+
+                <div>
+                    <h4 data-i18n="footerNav">Navigation</h4>
+                    <ul>
+                        <li><a href="#giochi" data-i18n="footerAllGames">All Games</a></li>
+                        <li><a href="#faq" data-i18n="navFaq">FAQ</a></li>
+                        <li><a href="javascript:void(0)" id="footer-login-link" data-i18n="footerAuthorLogin">Creator Login</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 data-i18n="footerDev">Developer</h4>
+                    <ul>
+                        <li><a href="https://github.com/diensal8-sudo" target="_blank" rel="noopener" data-i18n="footerGithub">GitHub Profile</a></li>
+                        <li><a href="https://github.com/diensal8-sudo/snake-game" target="_blank" rel="noopener">Snake Game Repo</a></li>
+                        <li><a href="https://diensal8-sudo.github.io/snake-game/" target="_blank" rel="noopener">Snake Game Demo</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-i18n="footerCopyright">&copy; 2026 Dev Arcade. Built to showcase playable web games & open source GitHub code.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================================================
+         AUTH MODAL (LOGIN & REGISTER)
+         ====================================================================== -->
+    <div id="auth-modal" class="modal-backdrop hidden">
+        <div class="modal-box" style="max-width: 440px;">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span style="font-size: 1.5rem;">🔐</span>
+                    <h3 id="auth-modal-title" data-i18n="authTitleLogin">User Login</h3>
+                </div>
+                <button id="close-auth-modal" class="close-btn" title="Close">&times;</button>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="auth-tabs">
+                <button type="button" class="auth-tab-btn active" id="tab-login-btn" data-i18n="tabLogin">Login</button>
+                <button type="button" class="auth-tab-btn" id="tab-register-btn" data-i18n="tabRegister">Register</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username" data-i18n="usernameOrEmail">Username or Email</label>
+                    <input type="text" id="login-username" required placeholder="Enter username or email..." data-i18n-ph="usernamePlaceholder">
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password" data-i18n="password">Password</label>
+                    <input type="password" id="login-password" required placeholder="Enter your password..." data-i18n-ph="passwordPlaceholder">
+                </div>
+
+                <div class="modal-actions" style="margin-top: 16px;">
+                    <button type="button" id="cancel-auth-modal" class="btn-outline" data-i18n="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-primary" style="flex: 1;" data-i18n="loginBtn">Login</button>
+                </div>
+            </form>
+
+            <!-- Registration Form -->
+            <form id="register-form" class="hidden">
+                <div class="form-group">
+                    <label for="reg-username" data-i18n="regUsername">Username *</label>
+                    <input type="text" id="reg-username" required placeholder="e.g. MarioDev">
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-email" data-i18n="regEmail">Email Address *</label>
+                    <input type="email" id="reg-email" required placeholder="e.g. mario@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-password" data-i18n="regPassword">Password *</label>
+                    <input type="password" id="reg-password" required minlength="4" placeholder="At least 4 characters...">
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-password-confirm" data-i18n="regConfirmPassword">Confirm Password *</label>
+                    <input type="password" id="reg-password-confirm" required minlength="4" placeholder="Repeat your password...">
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-role" data-i18n="regRole">Account Role</label>
+                    <select id="reg-role">
+                        <option value="player" data-i18n="rolePlayer">🕹️ Player (Visitor profile)</option>
+                        <option value="creator" data-i18n="roleCreator">🎮 Game Creator (Portfolio Owner)</option>
+                    </select>
+                </div>
+
+                <div class="form-group hidden" id="creator-key-group">
+                    <label for="reg-creator-key" data-i18n="creatorKey">Secret Creator Key *</label>
+                    <input type="password" id="reg-creator-key" placeholder="Enter creator secret key...">
+                    <span class="form-hint" data-i18n="creatorKeyHint">Only the portfolio owner has this key to manage games.</span>
+                </div>
+
+                <div class="modal-actions" style="margin-top: 16px;">
+                    <button type="button" id="cancel-reg-modal" class="btn-outline" data-i18n="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-primary" style="flex: 1;" data-i18n="createAccountBtn">Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         ADD / EDIT GAME MODAL
+         ====================================================================== -->
+    <div id="game-modal" class="modal-backdrop hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span style="font-size: 1.5rem;">🕹️</span>
+                    <h3 id="modal-title" data-i18n="addGameTitle">Add a New Game</h3>
+                </div>
+                <button id="close-game-modal" class="close-btn" title="Close">&times;</button>
+            </div>
+
+            <form id="game-form">
+                <input type="hidden" id="game-id">
+
+                <div class="form-group">
+                    <label for="title" data-i18n="gameTitle">Game Title *</label>
+                    <input type="text" id="title" required placeholder="e.g. Space Invaders Galactic War">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="category" data-i18n="gameCategory">Category *</label>
+                        <select id="category" required>
+                            <option value="Arcade">🕹️ Arcade</option>
+                            <option value="Puzzle">🧩 Puzzle</option>
+                            <option value="Azione">⚔️ Action</option>
+                            <option value="Platform">🏃 Platform</option>
+                            <option value="Casual">🎲 Casual</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tech" data-i18n="gameTech">Technologies / Languages</label>
+                        <input type="text" id="tech" placeholder="e.g. HTML5 • Canvas • JS" value="HTML5 • Canvas • JS">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" data-i18n="gameDescription">Game Description *</label>
+                    <textarea id="description" rows="3" required placeholder="Describe gameplay, controls, and objective..."></textarea>
+                </div>
+
+                <!-- THE TWO GITHUB LINKS -->
+                <div class="form-group" style="background: rgba(16, 185, 129, 0.08); padding: 14px; border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.25);">
+                    <label for="playUrl" style="color: #10b981; display: flex; align-items: center; gap: 6px;">
+                        <span>▶</span> <span data-i18n="gamePlayLink">Link 1: Playable Game (GitHub Pages) *</span>
+                    </label>
+                    <input type="url" id="playUrl" required placeholder="https://diensal8-sudo.github.io/game-name/">
+                    <span class="form-hint" data-i18n="gamePlayHint">URL where the game can be played live in browser.</span>
+                </div>
+
+                <div class="form-group" style="background: rgba(99, 102, 241, 0.08); padding: 14px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.25);">
+                    <label for="repoUrl" style="color: #818cf8; display: flex; align-items: center; gap: 6px;">
+                        <span>💻</span> <span data-i18n="gameRepoLink">Link 2: Source Code (GitHub Repository) *</span>
+                    </label>
+                    <input type="url" id="repoUrl" required placeholder="https://github.com/diensal8-sudo/game-name">
+                    <span class="form-hint" data-i18n="gameRepoHint">URL to the GitHub repository holding the source code.</span>
+                </div>
+
+                <!-- Card Appearance -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="coverStyle" data-i18n="gameThemeStyle">Card Gradient Theme</label>
+                        <select id="coverStyle">
+                            <option value="grad-purple">Purple & Indigo Galaxy</option>
+                            <option value="grad-cyan">Cyan & Electric Blue</option>
+                            <option value="grad-emerald">Laser Green & Emerald</option>
+                            <option value="grad-orange">Orange & Solar Flare</option>
+                            <option value="grad-rose">Cyberpunk Rose Neon</option>
+                            <option value="grad-cyber">Dark & Matrix Glow</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageUrl" data-i18n="gameImageCover">Cover Image (URL or path e.g. snake-cover.jpg)</label>
+                        <input type="text" id="imageUrl" placeholder="snake-cover.jpg or https://...">
+                    </div>
+                </div>
+
+                <!-- Live Banner Preview -->
+                <div class="form-group">
+                    <label style="font-size: 0.82rem; color: var(--text-muted);" data-i18n="bannerPreviewLabel">Live Banner Preview:</label>
+                    <div class="preview-banner-box">
+                        <div id="banner-live-preview" class="preview-banner-inner grad-purple">
+                            <span id="preview-badge-cat" class="banner-category-badge">Arcade</span>
+                            <span id="preview-badge-tech" class="tech-tag">HTML5 • JS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancel-game-modal" class="btn-outline" data-i18n="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-primary" id="save-game-btn" data-i18n="saveGameBtn">💾 Save Game</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         INTERACTIVE PLAYER MODAL (PLAY INSIDE PORTFOLIO)
+         ====================================================================== -->
+    <div id="player-modal" class="modal-backdrop hidden">
+        <div class="modal-box player-modal-box">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span style="font-size: 1.5rem;">🎮</span>
+                    <h3 id="player-game-title">Loading Game...</h3>
+                </div>
+                <button id="close-player-modal" class="close-btn" title="Close">&times;</button>
+            </div>
+            
+            <div class="game-iframe-wrapper">
+                <iframe id="game-iframe" src="" allowfullscreen title="Game Window"></iframe>
+            </div>
+
+            <div class="player-controls">
+                <div>
+                    <span id="player-game-tech" class="tech-tag" style="margin-right: 8px;">HTML5</span>
+                    <span id="player-game-cat" class="banner-category-badge">Arcade</span>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <a id="player-external-play-btn" href="#" target="_blank" rel="noopener" class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem;" data-i18n="playerFullscreen">
+                        ↗️ Play Fullscreen
+                    </a>
+                    <a id="player-repo-btn" href="#" target="_blank" rel="noopener" class="btn-github" style="padding: 8px 16px; font-size: 0.85rem;" data-i18n="playerRepo">
+                        &lt;/&gt; View GitHub Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         EXPORT / BACKUP MODAL
+         ====================================================================== -->
+    <div id="export-modal" class="modal-backdrop hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span style="font-size: 1.5rem;">📦</span>
+                    <h3 data-i18n="exportTitle">Export Games Configuration</h3>
+                </div>
+                <button id="close-export-modal" class="close-btn" title="Close">&times;</button>
+            </div>
+            <p class="export-info" style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 14px;" data-i18n="exportInfo">
+                Copy this code and replace defaultGames in script.js to make your games permanently available to all online visitors!
+            </p>
+            <textarea id="export-code" rows="12" readonly></textarea>
+            <div class="modal-actions">
+                <button type="button" id="download-json-btn" class="btn-outline" data-i18n="downloadJson">Download JSON</button>
+                <button type="button" id="copy-code-btn" class="btn-primary" data-i18n="copyCode">📋 Copy Code</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+    <!-- Main JavaScript Engine -->
+    <script src="script.js"></script>
+</body>
+</html>
