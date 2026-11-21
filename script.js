@@ -84,6 +84,8 @@ const translations = {
         usernamePlaceholder: "Enter username or email...",
         password: "Password",
         passwordPlaceholder: "Enter your password...",
+        showPassword: "Show password",
+        hidePassword: "Hide password",
         cancelBtn: "Cancel",
         loginBtn: "Login",
         regUsername: "Username *",
@@ -183,6 +185,8 @@ const translations = {
         usernamePlaceholder: "Inserisci username o email...",
         password: "Password",
         passwordPlaceholder: "Inserisci la tua password...",
+        showPassword: "Mostra password",
+        hidePassword: "Nascondi password",
         cancelBtn: "Annulla",
         loginBtn: "Accedi",
         regUsername: "Nome Utente *",
@@ -282,6 +286,8 @@ const translations = {
         usernamePlaceholder: "Ingresa usuario o correo...",
         password: "Contraseña",
         passwordPlaceholder: "Ingresa tu contraseña...",
+        showPassword: "Mostrar contraseña",
+        hidePassword: "Ocultar contraseña",
         cancelBtn: "Cancelar",
         loginBtn: "Entrar",
         regUsername: "Nombre de Usuario *",
@@ -381,6 +387,8 @@ const translations = {
         usernamePlaceholder: "Entrez votre nom ou email...",
         password: "Mot de passe",
         passwordPlaceholder: "Entrez votre mot de passe...",
+        showPassword: "Afficher le mot de passe",
+        hidePassword: "Masquer le mot de passe",
         cancelBtn: "Annuler",
         loginBtn: "Connexion",
         regUsername: "Nom d'utilisateur *",
@@ -480,6 +488,8 @@ const translations = {
         usernamePlaceholder: "أدخل اسم المستخدم أو البريد...",
         password: "كلمة المرور",
         passwordPlaceholder: "أدخل كلمة المرور...",
+        showPassword: "إظهار كلمة المرور",
+        hidePassword: "إخفاء كلمة المرور",
         cancelBtn: "إلغاء",
         loginBtn: "تسجيل الدخول",
         regUsername: "اسم المستخدم *",
@@ -579,6 +589,8 @@ const translations = {
         usernamePlaceholder: "请输入用户名或邮箱...",
         password: "密码",
         passwordPlaceholder: "请输入密码...",
+        showPassword: "显示密码",
+        hidePassword: "隐藏密码",
         cancelBtn: "取消",
         loginBtn: "登录",
         regUsername: "用户名 *",
@@ -678,6 +690,8 @@ const translations = {
         usernamePlaceholder: "Digite usuário ou e-mail...",
         password: "Senha",
         passwordPlaceholder: "Digite sua senha...",
+        showPassword: "Mostrar senha",
+        hidePassword: "Ocultar senha",
         cancelBtn: "Cancelar",
         loginBtn: "Entrar",
         regUsername: "Nome de Usuário *",
@@ -777,6 +791,8 @@ const translations = {
         usernamePlaceholder: "उपयोगकर्ता नाम या ईमेल दर्ज करें...",
         password: "पासवर्ड",
         passwordPlaceholder: "पासवर्ड दर्ज करें...",
+        showPassword: "पासवर्ड दिखाएँ",
+        hidePassword: "पासवर्ड छिपाएँ",
         cancelBtn: "रद्द करें",
         loginBtn: "लॉगिन",
         regUsername: "उपयोगकर्ता नाम *",
@@ -876,6 +892,8 @@ const translations = {
         usernamePlaceholder: "Введите имя или email...",
         password: "Пароль",
         passwordPlaceholder: "Введите пароль...",
+        showPassword: "Показать пароль",
+        hidePassword: "Скрыть пароль",
         cancelBtn: "Отмена",
         loginBtn: "Войти",
         regUsername: "Имя пользователя *",
@@ -975,6 +993,8 @@ const translations = {
         usernamePlaceholder: "ユーザー名またはメールを入力...",
         password: "パスワード",
         passwordPlaceholder: "パスワードを入力...",
+        showPassword: "パスワードを表示",
+        hidePassword: "パスワードを隠す",
         cancelBtn: "キャンセル",
         loginBtn: "ログイン",
         regUsername: "ユーザー名 *",
@@ -1162,6 +1182,12 @@ function setLanguage(lang) {
         if (key) {
             el.setAttribute("placeholder", t(key));
         }
+    });
+
+    document.querySelectorAll("[data-password-toggle]").forEach(button => {
+        const label = t(button.getAttribute("aria-pressed") === "true" ? "hidePassword" : "showPassword");
+        button.setAttribute("aria-label", label);
+        button.setAttribute("title", label);
     });
 
     // Re-render games so dynamic card text matches selected language
@@ -1376,7 +1402,7 @@ if (logoutBtn) {
 // ============================================================================
 function loadGames() {
     try {
-        // The tracked games.js file is the source of truth for the public portfolio.
+        // Il file games.js versionato contiene i giochi mostrati nel portfolio pubblico.
         games = defaultGames.map(g => ({ ...g }));
         saveGames();
     } catch (e) {
@@ -1785,6 +1811,21 @@ function setupEventListeners() {
 
     if (tabLoginBtn) tabLoginBtn.addEventListener("click", () => switchAuthTab("login"));
     if (tabRegisterBtn) tabRegisterBtn.addEventListener("click", () => switchAuthTab("register"));
+
+    document.querySelectorAll("[data-password-toggle]").forEach(button => {
+        const input = document.getElementById(button.dataset.passwordToggle);
+        if (!input) return;
+
+        button.addEventListener("click", () => {
+            const showPassword = input.type === "password";
+            input.type = showPassword ? "text" : "password";
+            button.setAttribute("aria-pressed", String(showPassword));
+            const label = t(showPassword ? "hidePassword" : "showPassword");
+            button.setAttribute("aria-label", label);
+            button.setAttribute("title", label);
+            input.focus();
+        });
+    });
 
     // Add Game Triggers
     if (navAddGameBtn) navAddGameBtn.addEventListener("click", openNewGameModal);

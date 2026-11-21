@@ -1,4 +1,4 @@
-// Edit this array to add or update games shown to every visitor.
+// Modifica questo array per aggiungere o aggiornare i giochi visibili a tutti.
 window.DEFAULT_GAMES = [
     {
         id: 1,

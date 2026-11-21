@@ -311,7 +311,12 @@
 
                 <div class="form-group">
                     <label for="login-password" data-i18n="password">Password</label>
-                    <input type="password" id="login-password" required placeholder="Enter your password..." data-i18n-ph="passwordPlaceholder">
+                    <div class="password-input-wrapper">
+                        <input type="password" id="login-password" required placeholder="Enter your password..." data-i18n-ph="passwordPlaceholder">
+                        <button type="button" class="password-toggle" data-password-toggle="login-password" aria-label="Show password" aria-pressed="false" title="Show password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle><path class="eye-slash" d="M3 3l18 18"></path></svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="modal-actions" style="margin-top: 16px;">
@@ -334,12 +339,22 @@
 
                 <div class="form-group">
                     <label for="reg-password" data-i18n="regPassword">Password *</label>
-                    <input type="password" id="reg-password" required minlength="4" placeholder="At least 4 characters...">
+                    <div class="password-input-wrapper">
+                        <input type="password" id="reg-password" required minlength="4" placeholder="At least 4 characters...">
+                        <button type="button" class="password-toggle" data-password-toggle="reg-password" aria-label="Show password" aria-pressed="false" title="Show password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle><path class="eye-slash" d="M3 3l18 18"></path></svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="reg-password-confirm" data-i18n="regConfirmPassword">Confirm Password *</label>
-                    <input type="password" id="reg-password-confirm" required minlength="4" placeholder="Repeat your password...">
+                    <div class="password-input-wrapper">
+                        <input type="password" id="reg-password-confirm" required minlength="4" placeholder="Repeat your password...">
+                        <button type="button" class="password-toggle" data-password-toggle="reg-password-confirm" aria-label="Show password" aria-pressed="false" title="Show password">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle><path class="eye-slash" d="M3 3l18 18"></path></svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="modal-actions" style="margin-top: 16px;">
