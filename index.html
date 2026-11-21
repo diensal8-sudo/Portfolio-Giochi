@@ -526,7 +526,12 @@
 
     <!-- Main JavaScript Engine -->
     <script src="games.js"></script>
-    <script src="creator-config.js"></script>
+    <script>
+        if (window.location.protocol === "file:" ||
+            ["localhost", "127.0.0.1", "[::1]", "::1"].includes(window.location.hostname)) {
+            document.write('<script src="creator-config.js"><\/script>');
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
