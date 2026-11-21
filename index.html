@@ -107,10 +107,10 @@
                 <a href="#giochi" class="btn-primary" data-i18n="heroExplore">
                     🎮 Explore Games
                 </a>
-                <button id="hero-add-btn" class="btn-outline" data-i18n="heroAdd">
+                <button id="hero-add-btn" class="btn-outline hidden" data-i18n="heroAdd">
                     ➕ Add a Game
                 </button>
-                <button id="open-export-modal" class="btn-github" data-i18n="heroExport">
+                <button id="open-export-modal" class="btn-github hidden" data-i18n="heroExport">
                     📦 Export for GitHub
                 </button>
             </div>
@@ -211,7 +211,7 @@
                     </button>
                     <div class="faq-answer">
                         <p data-i18n="faqA2">
-                            Click "Login / Register" at the top right. Log in as Creator with your credentials or register a new Creator account with your secret key. Then click "+ New Game" to publish your title and both GitHub links!
+                            The portfolio admin signs in with credentials from the private creator-config.js file. You can also edit games.js directly without signing in.
                         </p>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                     </button>
                     <div class="faq-answer">
                         <p data-i18n="faqA3">
-                            Yes! Added games are saved directly in browser LocalStorage. Furthermore, with the "Export for GitHub" button, you can copy the updated list into script.js so every visitor sees your games preloaded.
+                            Browser changes are temporary until you export games.js. Replace the project file and publish it so every visitor sees the updates.
                         </p>
                     </div>
                 </div>
@@ -340,20 +340,6 @@
                 <div class="form-group">
                     <label for="reg-password-confirm" data-i18n="regConfirmPassword">Confirm Password *</label>
                     <input type="password" id="reg-password-confirm" required minlength="4" placeholder="Repeat your password...">
-                </div>
-
-                <div class="form-group">
-                    <label for="reg-role" data-i18n="regRole">Account Role</label>
-                    <select id="reg-role">
-                        <option value="player" data-i18n="rolePlayer">🕹️ Player (Visitor profile)</option>
-                        <option value="creator" data-i18n="roleCreator">🎮 Game Creator (Portfolio Owner)</option>
-                    </select>
-                </div>
-
-                <div class="form-group hidden" id="creator-key-group">
-                    <label for="reg-creator-key" data-i18n="creatorKey">Secret Creator Key *</label>
-                    <input type="password" id="reg-creator-key" placeholder="Enter creator secret key...">
-                    <span class="form-hint" data-i18n="creatorKeyHint">Only the portfolio owner has this key to manage games.</span>
                 </div>
 
                 <div class="modal-actions" style="margin-top: 16px;">
@@ -509,10 +495,11 @@
                 <button id="close-export-modal" class="close-btn" title="Close">&times;</button>
             </div>
             <p class="export-info" style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 14px;" data-i18n="exportInfo">
-                Copy this code and replace defaultGames in script.js to make your games permanently available to all online visitors!
+                Download or copy this code to update games.js and publish your changes for all visitors.
             </p>
             <textarea id="export-code" rows="12" readonly></textarea>
             <div class="modal-actions">
+                <button type="button" id="download-js-btn" class="btn-outline" data-i18n="downloadGamesJs">Download games.js</button>
                 <button type="button" id="download-json-btn" class="btn-outline" data-i18n="downloadJson">Download JSON</button>
                 <button type="button" id="copy-code-btn" class="btn-primary" data-i18n="copyCode">📋 Copy Code</button>
             </div>
@@ -523,6 +510,8 @@
     <div id="toast-container"></div>
 
     <!-- Main JavaScript Engine -->
+    <script src="games.js"></script>
+    <script src="creator-config.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -13,78 +13,7 @@ const STORAGE_KEY_SESSION = "dev_arcade_session_v4";
 const STORAGE_KEY_THEME = "dev_arcade_theme_v4";
 const STORAGE_KEY_LANG = "dev_arcade_lang_v4";
 
-// ============================================================================
-// ADMIN CREATOR KEY & DEFAULT ADMIN ACCOUNT
-// ============================================================================
-const CREATOR_SECRET_KEY = "admin123";
-
-
-
-// ============================================================================
-// DEFAULT GAMES LIST (WITH DUAL GITHUB LINKS & SNAKE COVER POSITIONED ON THE SNAKE)
-// ============================================================================
-const defaultGames = [
-    {
-        id: 1,
-        title: "Snake from Scratch with HTML, CSS & JavaScript",
-        category: "Arcade",
-        tech: "HTML5 • CSS • Vanilla JS",
-        description: "The classic Snake game created from scratch with pure HTML, CSS, and JavaScript. Smooth grid movement, food collision, dynamic scoring system, and keyboard controls.",
-        playUrl: "https://diensal8-sudo.github.io/snake-game/",
-        repoUrl: "https://github.com/diensal8-sudo/calculator.git",
-        coverStyle: "grad-purple",
-        imageUrl: "snake-cover.jpg",
-        imagePosition: "center 52%" // Centers exactly on the green snake!
-    },
-    {
-        id: 2,
-        title: "Quiz Game built from scratch with HTML, CSS & JS",
-        category: "Azione",
-        tech: "Canvas 2D • JavaScript • Web Audio",
-        description: "A multiple-choice quiz game built from scratch with HTML, CSS and JavaScript. No libraries, no frameworks - just pure web technologies. Test your knowledge with a timer, score tracking, and interactive feedback.",
-        playUrl: "https://diensal8-sudo.github.io/quiz-e-domande/",
-        repoUrl: "https://github.com/diensal8-sudo/quiz-e-domande.git",
-        coverStyle: "grad-cyan",
-        imageUrl: "",
-        imagePosition: "center 50%"
-    },
-    {
-        id: 3,
-        title: "Memory Code Challenge",
-        category: "Puzzle",
-        tech: "JavaScript DOM • CSS 3D",
-        description: "Test your memory by matching programming icon pairs in the shortest time possible, with timer, flip animations, and local high scores.",
-        playUrl: "https://diensal8-sudo.github.io/Memory/",
-        repoUrl: "https://github.com/diensal8-sudo/Memory.git",
-        coverStyle: "grad-orange",
-        imageUrl: "",
-        imagePosition: "center 50%"
-    },
-    {
-        id: 4,
-        title: "Tic-Tac-Toe against the computer",
-        category: "Platform",
-        tech: "HTML5 Canvas • Physics JS",
-        description: " built from scratch with HTML, CSS and JavaScript. No libraries, no frameworks. Play against the computer with a simple AI that never loses, and enjoy the smooth animations and responsive design.",
-        playUrl: "https://diensal8-sudo.github.io/Tic-Tac-Toe-vs-CPU/",
-        repoUrl: "https://github.com/diensal8-sudo/Tic-Tac-Toe-vs-CPU.git",
-        coverStyle: "grad-emerald",
-        imageUrl: "",
-        imagePosition: "center 50%"
-    },
-    {
-        id: 5,
-        title: "A to-do list app built from scratch ",
-        category: "Casual",
-        tech: "CSS Grid • JavaScript • Touch Support",
-        description: "A to-do list app built from scratch with HTML, CSS and JavaScript. No libraries, no frameworks.",
-        playUrl: "https://diensal8-sudo.github.io/Todo-list/",
-        repoUrl: "https://github.com/diensal8-sudo/Todo-list.git",
-        coverStyle: "grad-rose",
-        imageUrl: "",
-        imagePosition: "center 50%"
-    }
-];
+const defaultGames = Array.isArray(window.DEFAULT_GAMES) ? window.DEFAULT_GAMES : [];
 
 // ============================================================================
 // MULTILINGUAL DICTIONARY (TOP 10 WORLD LANGUAGES)
@@ -135,9 +64,9 @@ const translations = {
         faqQ1: "How do the two GitHub links work for each game?",
         faqA1: "Each game includes two essential links: 1. 'Play Online' launches the game hosted via GitHub Pages (e.g. https://username.github.io/game-name/). 2. 'GitHub Code' opens the GitHub Repository with all source files to study, fork, or star.",
         faqQ2: "How can I add a new game to the portfolio?",
-        faqA2: "Click 'Login / Register' at the top right. Log in as Creator with your credentials or register a new Creator account with your secret key. Then click '+ New Game' to publish your title and both GitHub links!",
+        faqA2: "The portfolio admin can sign in with credentials from the private creator-config.js file. You can also edit games.js directly without signing in.",
         faqQ3: "Do added games stay saved permanently?",
-        faqA3: "Yes! Added games are saved directly in browser LocalStorage. Furthermore, with the 'Export for GitHub' button, you can copy the updated list into script.js so every visitor sees your games preloaded.",
+        faqA3: "Changes made in the browser are temporary until you export games.js. Replace the project file and publish it so every visitor sees the updates.",
         faqQ4: "Can I test games directly inside this website?",
         faqA4: "Absolutely! Click 'Play in Portfolio' on any card to launch an interactive game window without ever leaving the page.",
         footerDesc: "A collection of web games, prototypes and open-source experiments built with modern web technologies (HTML5 Canvas, CSS3, Vanilla JavaScript).",
@@ -184,10 +113,11 @@ const translations = {
         playerFullscreen: "↗️ Play Fullscreen",
         playerRepo: "</> View GitHub Code",
         exportTitle: "Export Games Configuration",
-        exportInfo: "Copy this code and replace defaultGames in script.js to make your games permanently available to all online visitors!",
+        exportInfo: "Download games.js or copy this code into games.js, then publish the updated file for all visitors.",
         copyCode: "📋 Copy Code",
         copiedCode: "✅ Copied!",
-        downloadJson: "Download JSON"
+        downloadJson: "Download JSON",
+        downloadGamesJs: "Download games.js"
     },
     it: {
         brandSubtitle: "Portfolio Giochi",
@@ -233,9 +163,9 @@ const translations = {
         faqQ1: "Come funzionano i due link di GitHub per ogni gioco?",
         faqA1: "Ogni gioco include due link essenziali: 1. '▶ Gioca Online' apre la versione su GitHub Pages. 2. '</> Codice GitHub' porta alla repository con i file sorgente da studiare o scaricare.",
         faqQ2: "Come posso aggiungere un mio nuovo gioco?",
-        faqA2: "Clicca su 'Accedi / Registrati' in alto a destra. Accedi come Creator con le tue credenziali o registrati inserendo la chiave segreta. Poi clicca '+ Nuovo Gioco'!",
+        faqA2: "L'amministratore può accedere con le credenziali nel file privato creator-config.js. Puoi anche modificare direttamente games.js senza accedere.",
         faqQ3: "I giochi aggiunti rimangono salvati per sempre?",
-        faqA3: "Sì! Vengono salvati nel LocalStorage del browser. Inoltre con 'Esporta per GitHub' puoi copiare la lista aggiornata in script.js così tutti i visitatori li vedranno sempre.",
+        faqA3: "Le modifiche fatte nel browser sono temporanee finché non esporti games.js. Sostituisci il file nel progetto e pubblicalo per mostrarle a tutti.",
         faqQ4: "Posso provare un gioco direttamente all'interno di questo sito?",
         faqA4: "Certamente! Clicca su 'Prova nel Portfolio' su qualsiasi scheda per avviare una finestra interattiva senza uscire dalla pagina.",
         footerDesc: "Collezione di videogiochi web, prototipi e giochi open source sviluppati con tecnologie web moderne (HTML5 Canvas, CSS3, JavaScript Vanilla).",
@@ -282,10 +212,11 @@ const translations = {
         playerFullscreen: "↗️ Gioca a Schermo Intero",
         playerRepo: "</> Vedi Codice GitHub",
         exportTitle: "Esporta Configurazione Giochi",
-        exportInfo: "Copia questo codice e sostituiscilo in script.js nella costante defaultGames per renderlo permanente online!",
+        exportInfo: "Scarica games.js o copia qui il codice nel file games.js, poi pubblica il file aggiornato.",
         copyCode: "📋 Copia Codice",
         copiedCode: "✅ Codice Copiato!",
-        downloadJson: "Scarica JSON"
+        downloadJson: "Scarica JSON",
+        downloadGamesJs: "Scarica games.js"
     },
     es: {
         brandSubtitle: "Portafolio de Juegos",
@@ -331,9 +262,9 @@ const translations = {
         faqQ1: "¿Cómo funcionan los dos enlaces de GitHub?",
         faqA1: "Cada juego incluye dos enlaces: 1. 'Jugar Online' abre el juego en GitHub Pages. 2. 'Código GitHub' lleva al repositorio con los archivos.",
         faqQ2: "¿Cómo añadir un nuevo juego?",
-        faqA2: "Inicia sesión como Creador con tu clave secreta y pulsa '+ Nuevo Juego'.",
+        faqA2: "El administrador inicia sesión con las credenciales del archivo privado creator-config.js. También puedes editar games.js directamente sin iniciar sesión.",
         faqQ3: "¿Se guardan los juegos para siempre?",
-        faqA3: "¡Sí! Se guardan en LocalStorage y con 'Exportar para GitHub' puedes pegarlos en script.js para que sean públicos.",
+        faqA3: "Los cambios del navegador son temporales hasta exportar games.js. Sustituye el archivo del proyecto y publícalo para mostrarlos a todos.",
         faqQ4: "¿Puedo jugar dentro de este sitio?",
         faqA4: "¡Por supuesto! Haz clic en 'Probar en Portafolio' para abrirlo directamente en la página.",
         footerDesc: "Colección de videojuegos web y prototipos desarrollados con tecnologías web modernas.",
@@ -380,10 +311,11 @@ const translations = {
         playerFullscreen: "↗️ Pantalla Completa",
         playerRepo: "</> Ver Código GitHub",
         exportTitle: "Exportar Configuración",
-        exportInfo: "Copia este código y pégalo en defaultGames en script.js.",
+        exportInfo: "Descarga games.js o copia este código en games.js y publica el archivo actualizado.",
         copyCode: "📋 Copiar Código",
         copiedCode: "✅ ¡Copiado!",
-        downloadJson: "Descargar JSON"
+        downloadJson: "Descargar JSON",
+        downloadGamesJs: "Descargar games.js"
     },
     fr: {
         brandSubtitle: "Portfolio de Jeux",
@@ -429,9 +361,9 @@ const translations = {
         faqQ1: "Comment fonctionnent les deux liens GitHub ?",
         faqA1: "Chaque jeu propose : 1. 'Jouer en Ligne' sur GitHub Pages. 2. 'Code GitHub' pour explorer le dépôt GitHub.",
         faqQ2: "Comment ajouter un nouveau jeu ?",
-        faqA2: "Connectez-vous en tant que Créateur avec votre clé secrète puis cliquez sur '+ Nouveau Jeu'.",
+        faqA2: "L'administrateur se connecte avec les identifiants du fichier privé creator-config.js. Vous pouvez aussi modifier directement games.js sans vous connecter.",
         faqQ3: "Les jeux restent-ils enregistrés ?",
-        faqA3: "Oui ! Ils sont stockés dans LocalStorage et exportables dans script.js pour être visibles de tous.",
+        faqA3: "Les changements dans le navigateur sont temporaires jusqu'à l'export de games.js. Remplacez le fichier du projet et publiez-le pour les partager.",
         faqQ4: "Puis-je jouer directement sur ce site ?",
         faqA4: "Absolument ! Cliquez sur 'Jouer ici' pour lancer le jeu dans une fenêtre intégrée.",
         footerDesc: "Collection de jeux vidéo web développés avec des technologies modernes.",
@@ -478,10 +410,11 @@ const translations = {
         playerFullscreen: "↗️ Plein Écran",
         playerRepo: "</> Voir Code GitHub",
         exportTitle: "Exporter la Configuration",
-        exportInfo: "Copiez ce code dans defaultGames dans script.js pour le rendre permanent.",
+        exportInfo: "Téléchargez games.js ou copiez ce code dans games.js, puis publiez le fichier mis à jour.",
         copyCode: "📋 Copier le Code",
         copiedCode: "✅ Copié !",
-        downloadJson: "Télécharger JSON"
+        downloadJson: "Télécharger JSON",
+        downloadGamesJs: "Télécharger games.js"
     },
     ar: {
         brandSubtitle: "معرض الألعاب",
@@ -527,9 +460,9 @@ const translations = {
         faqQ1: "كيف يعمل الرابطان المزدوجان من GitHub؟",
         faqA1: "لكل لعبة رابطان: 1. 'العب أونلاين' لتشغيل اللعبة في المتصفح. 2. 'كود GitHub' لفتح المستودع المصدري.",
         faqQ2: "كيف يمكنني إضافة لعبة جديدة؟",
-        faqA2: "سجل الدخول كمنشئ ألعاب باستخدام المفتاح السري، ثم انقر على '+ لعبة جديدة'.",
+        faqA2: "يسجل المسؤول الدخول ببيانات الملف الخاص creator-config.js. ويمكنك أيضًا تعديل games.js مباشرة دون تسجيل الدخول.",
         faqQ3: "هل تبقى الألعاب محفوظة دائماً؟",
-        faqA3: "نعم! تحفظ محلياً ويمكن نسخها عبر زر التصدير إلى ملف script.js لتصبح دائمة للجميع.",
+        faqA3: "تغييرات المتصفح مؤقتة حتى تصدير games.js. استبدل الملف في المشروع وانشره ليشاهد الجميع التحديثات.",
         faqQ4: "هل يمكنني اللعب داخل هذا الموقع مباشرة؟",
         faqA4: "بالتأكيد! انقر على 'العب بالمعرض' لفتح نافذة اللعب بدون مغادرة الصفحة.",
         footerDesc: "مجموعة ألعاب ويب وتجارب تفاعلية مبنية بأحدث تقنيات الويب الحديثة.",
@@ -576,10 +509,11 @@ const translations = {
         playerFullscreen: "↗️ وضع ملء الشاشة",
         playerRepo: "</> عرض كود GitHub",
         exportTitle: "تصدير التكوين",
-        exportInfo: "انسخ هذا الكود واستبدل defaultGames في script.js لجعله دائماً للزوار.",
+        exportInfo: "نزّل games.js أو انسخ هذا الرمز إلى games.js ثم انشر الملف المحدّث.",
         copyCode: "📋 نسخ الكود",
         copiedCode: "✅ تم النسخ بنجاح!",
-        downloadJson: "تحميل JSON"
+        downloadJson: "تحميل JSON",
+        downloadGamesJs: "تحميل games.js"
     },
     zh: {
         brandSubtitle: "网页游戏作品集",
@@ -625,9 +559,9 @@ const translations = {
         faqQ1: "每个游戏的双 GitHub 链接如何运作？",
         faqA1: "包含两个关键链接：1. “在线畅玩”通过 GitHub Pages 运行网页游戏；2. “GitHub 源码”直达开源代码仓库。",
         faqQ2: "如何添加新游戏？",
-        faqA2: "点击右上角登录/注册，输入创作者密钥即可获得发布权限，随后点击“+ 新增游戏”。",
+        faqA2: "管理员使用私有文件 creator-config.js 中的凭据登录。也可以不登录，直接编辑 games.js。",
         faqQ3: "添加的游戏会永久保存吗？",
-        faqA3: "是的！本地保存在 LocalStorage 中，通过“导出到 GitHub”按钮可将配置代码固化至 script.js 中供全球访客浏览。",
+        faqA3: "浏览器中的更改是临时的，导出 games.js 后才会保存。替换项目文件并发布后，所有访客都能看到更新。",
         faqQ4: "可以直接在当前页面内试玩吗？",
         faqA4: "当然！点击卡片上的“站内试玩”即可在弹出窗口中即时体验。",
         footerDesc: "基于纯原生 HTML5 Canvas、CSS3 和 JavaScript 开发的现代网页游戏集。",
@@ -674,10 +608,11 @@ const translations = {
         playerFullscreen: "↗️ 全屏游玩",
         playerRepo: "</> 查看源码",
         exportTitle: "导出游戏配置",
-        exportInfo: "复制此代码并替换 script.js 中的 defaultGames，让全球访客直接看到新游戏！",
+        exportInfo: "下载 games.js，或将此代码复制到 games.js，然后发布更新后的文件。",
         copyCode: "📋 复制代码",
         copiedCode: "✅ 复制成功！",
-        downloadJson: "下载 JSON 备份"
+        downloadJson: "下载 JSON 备份",
+        downloadGamesJs: "下载 games.js"
     },
     pt: {
         brandSubtitle: "Portfólio de Jogos",
@@ -723,9 +658,9 @@ const translations = {
         faqQ1: "Como funcionam os dois links do GitHub?",
         faqA1: "Cada jogo tem dois links: 1. 'Jogar Online' via GitHub Pages. 2. 'Código GitHub' com os arquivos no repositório.",
         faqQ2: "Como adicionar um novo jogo?",
-        faqA2: "Faça login como Criador com sua chave secreta e clique em '+ Novo Jogo'.",
+        faqA2: "O administrador entra com as credenciais do arquivo privado creator-config.js. Você também pode editar games.js diretamente sem entrar.",
         faqQ3: "Os jogos adicionados ficam salvos?",
-        faqA3: "Sim! Ficam salvos no LocalStorage e você pode exportá-los para o script.js para que fiquem públicos.",
+        faqA3: "As alterações no navegador são temporárias até exportar games.js. Substitua o arquivo do projeto e publique-o para exibi-las a todos.",
         faqQ4: "Posso jogar direto nesta página?",
         faqA4: "Com certeza! Clique em 'Jogar no Portfólio' para abrir uma janela interativa.",
         footerDesc: "Coleção de jogos web desenvolvidos com tecnologias modernas.",
@@ -772,10 +707,11 @@ const translations = {
         playerFullscreen: "↗️ Tela Cheia",
         playerRepo: "</> Ver Código GitHub",
         exportTitle: "Exportar Configuração",
-        exportInfo: "Copie este código e cole em defaultGames em script.js.",
+        exportInfo: "Baixe games.js ou copie este código para games.js e publique o arquivo atualizado.",
         copyCode: "📋 Copiar Código",
         copiedCode: "✅ Copiado!",
-        downloadJson: "Baixar JSON"
+        downloadJson: "Baixar JSON",
+        downloadGamesJs: "Baixar games.js"
     },
     hi: {
         brandSubtitle: "गेम पोर्टफोलियो",
@@ -821,9 +757,9 @@ const translations = {
         faqQ1: "दो GitHub लिंक कैसे काम करते हैं?",
         faqA1: "प्रत्येक गेम में दो लिंक हैं: 1. 'ऑनलाइन खेलें' GitHub Pages पर गेम खोलता है। 2. 'GitHub कोड' सोर्स कोड दिखाता है।",
         faqQ2: "नया गेम कैसे जोड़ें?",
-        faqA2: "क्रिएटर के रूप में गुप्त कुंजी से लॉगिन करें और '+ नया गेम' पर क्लिक करें।",
+        faqA2: "व्यवस्थापक निजी creator-config.js फ़ाइल के क्रेडेंशियल से लॉगिन करता है। आप बिना लॉगिन किए games.js सीधे संपादित भी कर सकते हैं।",
         faqQ3: "क्या जोड़े गए गेम्स हमेशा सुरक्षित रहते हैं?",
-        faqA3: "हाँ! वे LocalStorage में सुरक्षित रहते हैं और script.js में कॉपी करके सार्वजनिक किए जा सकते हैं।",
+        faqA3: "ब्राउज़र के बदलाव games.js निर्यात करने तक अस्थायी हैं। प्रोजेक्ट फ़ाइल बदलें और अपडेट सभी को दिखाने के लिए प्रकाशित करें।",
         faqQ4: "क्या मैं सीधे इसी साइट पर खेल सकता हूँ?",
         faqA4: "बिल्कुल! बिना पेज छोड़े खेलने के लिए 'यहीं खेलें' पर क्लिक करें।",
         footerDesc: "आधुनिक वेब तकनीकों से निर्मित वेब गेम्स और ओपन सोर्स प्रयोगों का संग्रह।",
@@ -870,10 +806,11 @@ const translations = {
         playerFullscreen: "↗️ फुलस्क्रीन खेलें",
         playerRepo: "</> कोड देखें",
         exportTitle: "कॉन्फ़िगरेशन निर्यात करें",
-        exportInfo: "इस कोड को script.js में defaultGames में बदलें।",
+        exportInfo: "games.js डाउनलोड करें या यह कोड games.js में कॉपी करें, फिर अपडेट की गई फ़ाइल प्रकाशित करें।",
         copyCode: "📋 कोड कॉपी करें",
         copiedCode: "✅ कॉपी हो गया!",
-        downloadJson: "JSON डाउनलोड करें"
+        downloadJson: "JSON डाउनलोड करें",
+        downloadGamesJs: "games.js डाउनलोड करें"
     },
     ru: {
         brandSubtitle: "Портфолио Игр",
@@ -919,9 +856,9 @@ const translations = {
         faqQ1: "Как работают две ссылки GitHub?",
         faqA1: "Каждая игра содержит: 1. 'Играть Онлайн' на GitHub Pages. 2. 'Код GitHub' с файлами исходного кода.",
         faqQ2: "Как добавить новую игру?",
-        faqA2: "Войдите под ролью Создателя с секретным ключом и нажмите '+ Новая игра'.",
+        faqA2: "Администратор входит с данными из приватного файла creator-config.js. Также можно редактировать games.js напрямую без входа.",
         faqQ3: "Сохраняются ли игры навсегда?",
-        faqA3: "Да! Они сохраняются в LocalStorage, а через 'Экспорт для GitHub' их можно скопировать в script.js.",
+        faqA3: "Изменения в браузере временные, пока не экспортирован games.js. Замените файл проекта и опубликуйте его, чтобы показать обновления.",
         faqQ4: "Можно ли играть прямо внутри сайта?",
         faqA4: "Конечно! Нажмите 'Играть на сайте' для запуска встроенного окна.",
         footerDesc: "Коллекция веб-игр, созданных на чистых современных технологиях (HTML5 Canvas, CSS3, JavaScript).",
@@ -968,10 +905,11 @@ const translations = {
         playerFullscreen: "↗️ Во весь экран",
         playerRepo: "</> Смотреть на GitHub",
         exportTitle: "Экспорт Конфигурации",
-        exportInfo: "Скопируйте этот массив в defaultGames в script.js.",
+        exportInfo: "Скачайте games.js или скопируйте код в games.js, затем опубликуйте обновлённый файл.",
         copyCode: "📋 Скопировать Код",
         copiedCode: "✅ Скопировано!",
-        downloadJson: "Скачать JSON"
+        downloadJson: "Скачать JSON",
+        downloadGamesJs: "Скачать games.js"
     },
     ja: {
         brandSubtitle: "ゲームポートフォリオ",
@@ -1017,9 +955,9 @@ const translations = {
         faqQ1: "2つのGitHubリンクの違いは何ですか？",
         faqA1: "各ゲームには2つのリンクがあります: 1. 「今すぐプレイ」は GitHub Pages による動作デモ。2. 「GitHub コード」はソースコードのリポジトリです。",
         faqQ2: "新しいゲームを追加するには？",
-        faqA2: "作成者として秘密鍵でログインし、「+ 新規ゲーム追加」ボタンを押します。",
+        faqA2: "管理者は非公開の creator-config.js ファイルの認証情報でログインします。ログインせず games.js を直接編集することもできます。",
         faqQ3: "追加したゲームは保存されますか？",
-        faqA3: "はい！LocalStorage に保存され、「GitHub用にエクスポート」を使って script.js に書き込めば常時公開されます。",
+        faqA3: "ブラウザーでの変更は games.js をエクスポートするまで一時的です。プロジェクト内のファイルを置き換えて公開すると全員に反映されます。",
         faqQ4: "このサイトから離れずにプレイできますか？",
         faqA4: "はい！「サイト内でプレイ」をクリックすると、ページ内で直接ゲームが起動します。",
         footerDesc: "HTML5 Canvas、CSS3、Vanilla JavaScript で作られたインタラクティブなゲーム作品集。",
@@ -1066,10 +1004,11 @@ const translations = {
         playerFullscreen: "↗️ フルスクリーンで起動",
         playerRepo: "</> GitHub でコードを見る",
         exportTitle: "設定をエクスポート",
-        exportInfo: "このコードをコピーして script.js の defaultGames に貼り付けてください。",
+        exportInfo: "games.js をダウンロードするか、このコードを games.js にコピーして更新したファイルを公開してください。",
         copyCode: "📋 コードをコピー",
         copiedCode: "✅ コピー完了！",
-        downloadJson: "JSON ダウンロード"
+        downloadJson: "JSON ダウンロード",
+        downloadGamesJs: "games.js をダウンロード"
     }
 };
 
@@ -1119,9 +1058,6 @@ const tabRegisterBtn = document.getElementById("tab-register-btn");
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
 const cancelRegModal = document.getElementById("cancel-reg-modal");
-const regRoleSelect = document.getElementById("reg-role");
-const creatorKeyGroup = document.getElementById("creator-key-group");
-const regCreatorKeyInput = document.getElementById("reg-creator-key");
 
 // Game Modal (Add / Edit)
 const gameModal = document.getElementById("game-modal");
@@ -1159,6 +1095,7 @@ const closeExportModal = document.getElementById("close-export-modal");
 const exportCodeTextarea = document.getElementById("export-code");
 const copyCodeBtn = document.getElementById("copy-code-btn");
 const downloadJsonBtn = document.getElementById("download-json-btn");
+const downloadJsBtn = document.getElementById("download-js-btn");
 
 // Toast Container
 const toastContainer = document.getElementById("toast-container");
@@ -1261,30 +1198,31 @@ function setTheme(theme) {
 // ============================================================================
 function initAuth() {
     try {
-        const storedUsers = localStorage.getItem(STORAGE_KEY_USERS);
-        if (storedUsers) {
-            users = JSON.parse(storedUsers);
-        } else {
-            users = [defaultAdminUser];
-            localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
-        }
+        const storedUsers = JSON.parse(localStorage.getItem(STORAGE_KEY_USERS) || "[]");
+        users = Array.isArray(storedUsers) ? storedUsers.filter(user => user && user.role === "player") : [];
+        localStorage.setItem(STORAGE_KEY_USERS, JSON.stringify(users));
 
-        const storedSession = localStorage.getItem(STORAGE_KEY_SESSION);
-        if (storedSession) {
-            currentUser = JSON.parse(storedSession);
+        const storedSession = JSON.parse(localStorage.getItem(STORAGE_KEY_SESSION) || "null");
+        if (storedSession && storedSession.role === "player") {
+            currentUser = storedSession;
+        } else {
+            currentUser = null;
+            localStorage.removeItem(STORAGE_KEY_SESSION);
         }
     } catch (e) {
         console.error("Auth initialization error:", e);
-        users = [defaultAdminUser];
+        users = [];
         currentUser = null;
+        localStorage.removeItem(STORAGE_KEY_SESSION);
     }
 }
 
 function isCreator() {
-    return currentUser && (currentUser.role === "creator" || currentUser.role === "admin");
+    return Boolean(currentUser && currentUser.role === "admin");
 }
 
 function updateUIForAuth() {
+    const creator = isCreator();
     if (currentUser) {
         if (authActions) authActions.classList.add("hidden");
         if (userProfileMenu) userProfileMenu.classList.remove("hidden");
@@ -1293,22 +1231,17 @@ function updateUIForAuth() {
         if (userAvatarInitial) userAvatarInitial.textContent = (currentUser.username || "U")[0].toUpperCase();
 
         if (userRoleBadge) {
-            userRoleBadge.textContent = isCreator() ? t("roleCreator").split(" ")[1] : t("rolePlayer").split(" ")[1];
-            userRoleBadge.style.color = isCreator() ? "var(--accent-emerald)" : "var(--accent-cyan)";
-        }
-
-        if (navAddGameBtn) {
-            if (isCreator()) {
-                navAddGameBtn.classList.remove("hidden");
-            } else {
-                navAddGameBtn.classList.add("hidden");
-            }
+            userRoleBadge.textContent = creator ? t("roleCreator").split(" ")[1] : t("rolePlayer").split(" ")[1];
+            userRoleBadge.style.color = creator ? "var(--accent-emerald)" : "var(--accent-cyan)";
         }
     } else {
         if (authActions) authActions.classList.remove("hidden");
         if (userProfileMenu) userProfileMenu.classList.add("hidden");
     }
 
+    [navAddGameBtn, heroAddBtn, openExportModal].forEach(button => {
+        if (button) button.classList.toggle("hidden", !creator);
+    });
     renderGames();
 }
 
@@ -1344,15 +1277,32 @@ loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const identifier = document.getElementById("login-username").value.trim().toLowerCase();
     const pass = document.getElementById("login-password").value;
+    const creatorConfig = window.CREATOR_CONFIG;
 
-    const user = users.find(u =>
+    const adminConfigured = creatorConfig &&
+        typeof creatorConfig.username === "string" &&
+        creatorConfig.username.trim() &&
+        typeof creatorConfig.password === "string" &&
+        creatorConfig.password;
+    const isAdminLogin = adminConfigured &&
+        creatorConfig.username.trim().toLowerCase() === identifier &&
+        creatorConfig.password === pass;
+    const user = isAdminLogin ? {
+        username: creatorConfig.username.trim(),
+        name: creatorConfig.displayName || creatorConfig.username.trim(),
+        role: "admin"
+    } : users.find(u =>
         (u.username.toLowerCase() === identifier || u.email.toLowerCase() === identifier) &&
         u.password === pass
     );
 
     if (user) {
         currentUser = user;
-        localStorage.setItem(STORAGE_KEY_SESSION, JSON.stringify(currentUser));
+        if (isCreator()) {
+            localStorage.removeItem(STORAGE_KEY_SESSION);
+        } else {
+            localStorage.setItem(STORAGE_KEY_SESSION, JSON.stringify(currentUser));
+        }
         closeAuthDialog();
         updateUIForAuth();
         showToast(`${user.name || user.username} logged in successfully!`, "success");
@@ -1368,8 +1318,6 @@ registerForm.addEventListener("submit", (e) => {
     const email = document.getElementById("reg-email").value.trim().toLowerCase();
     const pass = document.getElementById("reg-password").value;
     const confirmPass = document.getElementById("reg-password-confirm").value;
-    const role = regRoleSelect.value;
-
     if (pass !== confirmPass) {
         showToast("Passwords do not match!", "error");
         return;
@@ -1392,21 +1340,12 @@ registerForm.addEventListener("submit", (e) => {
         return;
     }
 
-    // Protect Creator role with secret key
-    if (role === "creator") {
-        const creatorKey = regCreatorKeyInput ? regCreatorKeyInput.value.trim() : "";
-        if (creatorKey !== CREATOR_SECRET_KEY) {
-            showToast("Invalid secret creator key! You cannot register as Creator.", "error");
-            return;
-        }
-    }
-
     const newUser = {
         username: username,
         email: email,
         password: pass,
         name: username,
-        role: role
+        role: "player"
     };
 
     users.push(newUser);
@@ -1437,7 +1376,7 @@ if (logoutBtn) {
 // ============================================================================
 function loadGames() {
     try {
-        // Carica i giochi definiti in defaultGames così le modifiche in script.js sono sempre visibili
+        // The tracked games.js file is the source of truth for the public portfolio.
         games = defaultGames.map(g => ({ ...g }));
         saveGames();
     } catch (e) {
@@ -1585,14 +1524,8 @@ window.resetFilters = function() {
 // ADD & EDIT GAME (CREATOR ONLY)
 // ============================================================================
 function openNewGameModal() {
-    if (!currentUser) {
-        showToast("Please login or register to add new games!", "info");
-        openAuthDialog("login");
-        return;
-    }
-
     if (!isCreator()) {
-        showToast("Your account is registered as Player. Only Creators can publish games.", "error");
+        showToast("Only the portfolio admin can add games.", "error");
         return;
     }
 
@@ -1659,6 +1592,10 @@ function updateLiveBannerPreview() {
 // Save Game
 gameForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (!isCreator()) {
+        showToast("You do not have permission to save games.", "error");
+        return;
+    }
 
     const idVal = gameIdInput.value;
     const isEdit = Boolean(idVal);
@@ -1734,7 +1671,11 @@ function closePlayerDialog() {
 // EXPORT & BACKUP FOR GITHUB
 // ============================================================================
 function openExportDialog() {
-    const codeString = `const defaultGames = ${JSON.stringify(games, null, 4)};`;
+    if (!isCreator()) {
+        showToast("Only the portfolio admin can export games.", "error");
+        return;
+    }
+    const codeString = `window.DEFAULT_GAMES = ${JSON.stringify(games, null, 4)};`;
     exportCodeTextarea.value = codeString;
     exportModal.classList.remove("hidden");
 }
@@ -1745,10 +1686,14 @@ function closeExportDialog() {
 
 if (copyCodeBtn) {
     copyCodeBtn.addEventListener("click", () => {
+        if (!isCreator()) {
+            showToast("Only the portfolio admin can export games.", "error");
+            return;
+        }
         exportCodeTextarea.select();
         navigator.clipboard.writeText(exportCodeTextarea.value).then(() => {
             copyCodeBtn.textContent = t("copiedCode");
-            showToast("Code copied to clipboard! Paste it into script.js.", "success");
+            showToast("Code copied! Paste it into games.js.", "success");
             setTimeout(() => {
                 copyCodeBtn.textContent = t("copyCode");
             }, 2500);
@@ -1758,8 +1703,30 @@ if (copyCodeBtn) {
     });
 }
 
+if (downloadJsBtn) {
+    downloadJsBtn.addEventListener("click", () => {
+        if (!isCreator()) {
+            showToast("Only the portfolio admin can export games.", "error");
+            return;
+        }
+        const file = new Blob([exportCodeTextarea.value], { type: "text/javascript;charset=utf-8" });
+        const downloadAnchor = document.createElement("a");
+        downloadAnchor.href = URL.createObjectURL(file);
+        downloadAnchor.download = "games.js";
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+        setTimeout(() => URL.revokeObjectURL(downloadAnchor.href), 1000);
+        showToast("games.js downloaded. Replace the project file to publish your changes.", "success");
+    });
+}
+
 if (downloadJsonBtn) {
     downloadJsonBtn.addEventListener("click", () => {
+        if (!isCreator()) {
+            showToast("Only the portfolio admin can export games.", "error");
+            return;
+        }
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(games, null, 2));
         const downloadAnchor = document.createElement("a");
         downloadAnchor.setAttribute("href", dataStr);
@@ -1818,20 +1785,6 @@ function setupEventListeners() {
 
     if (tabLoginBtn) tabLoginBtn.addEventListener("click", () => switchAuthTab("login"));
     if (tabRegisterBtn) tabRegisterBtn.addEventListener("click", () => switchAuthTab("register"));
-
-    // Secret Key Toggle
-    if (regRoleSelect) {
-        regRoleSelect.addEventListener("change", () => {
-            if (regRoleSelect.value === "creator") {
-                if (creatorKeyGroup) creatorKeyGroup.classList.remove("hidden");
-            } else {
-                if (creatorKeyGroup) {
-                    creatorKeyGroup.classList.add("hidden");
-                    if (regCreatorKeyInput) regCreatorKeyInput.value = "";
-                }
-            }
-        });
-    }
 
     // Add Game Triggers
     if (navAddGameBtn) navAddGameBtn.addEventListener("click", openNewGameModal);
