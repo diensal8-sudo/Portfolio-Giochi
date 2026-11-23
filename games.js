@@ -59,5 +59,18 @@ window.DEFAULT_GAMES = [
         coverStyle: "grad-rose",
         imageUrl: "",
         imagePosition: "center 50%"
-    }
+    },
+
+     {
+        id: 6,
+        title: "Pomodoro Timer",
+        category: "Casual",
+        tech: "CSS Grid • JavaScript • Touch Support",
+        description: "A Pomodoro timer built from scratch with plain HTML, CSS and JavaScript. No libraries. No frameworks. Just pure web technologies.",
+        playUrl: "https://diensal8-sudo.github.io/Pomodoro-Timer/",
+        repoUrl: "https://github.com/diensal8-sudo/Pomodoro-Timer.git",
+        coverStyle: "grad-rose",
+        imageUrl: "",
+        imagePosition: "center 50%"
+     }
 ];
