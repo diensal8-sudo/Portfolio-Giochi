@@ -9,7 +9,7 @@ window.DEFAULT_GAMES = [
         playUrl: "https://diensal8-sudo.github.io/snake-game/",
         repoUrl: "https://github.com/diensal8-sudo/calculator.git",
         coverStyle: "grad-purple",
-        imageUrl: "snake-cover.jpg",
+        imageUrl: "assets/snake-cover.jpg",
         imagePosition: "center 52%"
     },
     {
@@ -21,8 +21,8 @@ window.DEFAULT_GAMES = [
         playUrl: "https://diensal8-sudo.github.io/quiz-e-domande/",
         repoUrl: "https://github.com/diensal8-sudo/quiz-e-domande.git",
         coverStyle: "grad-cyan",
-        imageUrl: "",
-        imagePosition: "center 50%"
+        imageUrl: "assets/quiz-cover.jpg",
+        imagePosition: "center 52%"
     },
     {
         id: 3,
@@ -33,8 +33,8 @@ window.DEFAULT_GAMES = [
         playUrl: "https://diensal8-sudo.github.io/Memory/",
         repoUrl: "https://github.com/diensal8-sudo/Memory.git",
         coverStyle: "grad-orange",
-        imageUrl: "",
-        imagePosition: "center 50%"
+        imageUrl: "assets/memory-cover.jpg",
+        imagePosition: "center 52%"
     },
     {
         id: 4,
@@ -45,8 +45,8 @@ window.DEFAULT_GAMES = [
         playUrl: "https://diensal8-sudo.github.io/Tic-Tac-Toe-vs-CPU/",
         repoUrl: "https://github.com/diensal8-sudo/Tic-Tac-Toe-vs-CPU.git",
         coverStyle: "grad-emerald",
-        imageUrl: "",
-        imagePosition: "center 50%"
+        imageUrl: "assets/tris-cover.jpg",
+        imagePosition: "center 52%"
     },
     {
         id: 5,
@@ -57,8 +57,8 @@ window.DEFAULT_GAMES = [
         playUrl: "https://diensal8-sudo.github.io/Todo-list/",
         repoUrl: "https://github.com/diensal8-sudo/Todo-list.git",
         coverStyle: "grad-rose",
-        imageUrl: "",
-        imagePosition: "center 50%"
+        imageUrl: "assets/todo-cover.jpg",
+        imagePosition: "center 52%"
     },
 
      {
